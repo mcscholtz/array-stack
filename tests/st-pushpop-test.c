@@ -20,7 +20,7 @@ void st_push_pop(CuTest * tc)
     while(stack->top != 0) {
         stack->pop(stack, &j);
     }
-    
+    CuAssertIntEquals(tc, 0, stack->top);
     st_delete(stack);
 }
 
