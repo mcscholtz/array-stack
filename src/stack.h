@@ -5,10 +5,10 @@ struct st {
     void (*push)(struct st* stack, void * elem);
     void (*pop)(struct st* stack, void * elem);
     void * (*pop_a)(struct st* stack);
-    int capacity;
-    int elemsize;
+    int _capacity;
+    int _elemsize;
     int top;
-    void * array;
+    void * _array;
 };
 
 struct st * st_new(int capacity, int elemsize);

@@ -11,10 +11,10 @@ struct st * st_new(int capacity, int elemsize)
 {
     struct st * stack = malloc(sizeof(struct st));
     assert(stack != NULL && "Out of memory");
-    stack->elemsize = elemsize;
-    stack->capacity = capacity;
-    stack->array = malloc(capacity*elemsize);
-    assert(stack->array != NULL && "Out of memory");
+    stack->_elemsize = elemsize;
+    stack->_capacity = capacity;
+    stack->_array = malloc(capacity*elemsize);
+    assert(stack->_array != NULL && "Out of memory");
     stack->top = 0;
 
     stack->push = st_push;
@@ -26,17 +26,17 @@ struct st * st_new(int capacity, int elemsize)
 void st_delete(struct st * stack)
 {
     assert(stack != NULL && "The stack is NULL");
-    assert(stack->array != NULL && "The stack has no memory allocated");
+    assert(stack->_array != NULL && "The stack has no memory allocated");
 
-    free(stack->array);
+    free(stack->_array);
     free(stack);
 }
 
 static void st_push(struct st * stack, void * elem)
 {
-    assert(stack->top <= stack->capacity-1);
-    int index = (stack->top)*stack->elemsize;
-    memcpy(stack->array + index,elem, stack->elemsize);
+    assert(stack->top <= stack->_capacity-1);
+    int index = (stack->top)*stack->_elemsize;
+    memcpy(stack->_array + index,elem, stack->_elemsize);
     stack->top++;
 }
 
@@ -44,9 +44,9 @@ void * st_pop_alloc(struct st * stack)
 {
     assert(stack->top > 0);
     stack->top--;
-    void * elem = malloc(stack->elemsize);
+    void * elem = malloc(stack->_elemsize);
     assert(elem != NULL && "Out of memory");
-    memcpy(elem ,stack->array + stack->top*stack->elemsize , stack->elemsize);
+    memcpy(elem ,stack->_array + stack->top*stack->_elemsize , stack->_elemsize);
     return elem;
 }
 
@@ -54,5 +54,5 @@ void st_pop(struct st * stack, void * elem)
 {
     assert(stack->top > 0);
     stack->top--;
-    memcpy(elem ,stack->array + stack->top*stack->elemsize , stack->elemsize);
+    memcpy(elem ,stack->_array + stack->top*stack->_elemsize , stack->_elemsize);
 }
