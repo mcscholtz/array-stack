@@ -36,7 +36,7 @@ static void st_push(struct st * stack, void * elem)
 {
     assert(stack->top <= stack->_capacity-1);
     int index = (stack->top)*stack->_elemsize;
-    memcpy(stack->_array + index,elem, stack->_elemsize);
+    memcpy((char*)stack->_array + index,elem, stack->_elemsize);
     stack->top++;
 }
 
@@ -46,7 +46,7 @@ void * st_pop_alloc(struct st * stack)
     stack->top--;
     void * elem = malloc(stack->_elemsize);
     assert(elem != NULL && "Out of memory");
-    memcpy(elem ,stack->_array + stack->top*stack->_elemsize , stack->_elemsize);
+    memcpy(elem ,(char*)stack->_array + stack->top*stack->_elemsize , stack->_elemsize);
     return elem;
 }
 
@@ -54,5 +54,5 @@ void st_pop(struct st * stack, void * elem)
 {
     assert(stack->top > 0);
     stack->top--;
-    memcpy(elem ,stack->_array + stack->top*stack->_elemsize , stack->_elemsize);
+    memcpy(elem ,(char*)stack->_array + stack->top*stack->_elemsize , stack->_elemsize);
 }
