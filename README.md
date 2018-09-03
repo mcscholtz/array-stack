@@ -25,4 +25,4 @@ assert(ret == *(int *)ret2);
 free(ret2);
 ```
 
-For more examples look at the [tests](https://github.com/mcscholtz/cll/blob/master/tests/)
+For more examples look at the [tests](https://github.com/mcscholtz/cst/tree/master/tests/)
