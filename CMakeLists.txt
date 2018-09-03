@@ -6,7 +6,7 @@ include(Project.cmake)
 
 #Project Sources
 set (PROJECT_SOURCES 
-    ${PROJECT_SOURCE_DIR}/stack.c
+    ${PROJECT_SOURCE_DIR}/st.c
 )
 
 #Add the library as static

@@ -1,5 +1,5 @@
 #include "suite.h"
-#include "stack.h"
+#include "st.h"
 
 void st_push_pop(CuTest * tc)
 {
